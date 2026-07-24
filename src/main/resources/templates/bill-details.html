@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .invoice-card { border-radius: 15px; }
+        .section-title { background: #198754; color: white; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow invoice-card">
+        <div class="card-header bg-success text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>
+                    <i class="bi bi-receipt me-1"></i> Hospital Invoice
+                </h3>
+                <button onclick="window.print()" class="btn btn-light">
+                    <i class="bi bi-printer"></i> Print
+                </button>
+            </div>
+
+        <div class="card-body">
+
+            <h5 class="section-title">
+                <i class="bi bi-info-circle me-1"></i> Invoice Information
+            </h5>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Bill ID</th>
+                    <td th:text="${bill.id}"></td>
+                </tr>
+                <tr>
+                    <th>Bill Date</th>
+                    <td th:text="${bill.billDate}"></td>
+                </tr>
+                <tr>
+                    <th>Due Date</th>
+                    <td th:text="${bill.dueDate}"></td>
+                </tr>
+                <tr>
+                    <th>Bill Type</th>
+                    <td th:text="${bill.billType}"></td>
+                </tr>
+                <tr>
+                    <th>Payment Status</th>
+                    <td>
+                        <span class="badge bg-success" th:if="${bill.paymentStatus == 'Paid'}" th:text="${bill.paymentStatus}">Paid</span>
+                        <span class="badge bg-warning" th:if="${bill.paymentStatus == 'Pending'}" th:text="${bill.paymentStatus}">Pending</span>
+                        <span class="badge bg-danger" th:if="${bill.paymentStatus == 'Overdue'}" th:text="${bill.paymentStatus}">Overdue</span>
+                        <span class="badge bg-secondary" th:if="${bill.paymentStatus != 'Paid' and bill.paymentStatus != 'Pending' and bill.paymentStatus != 'Overdue'}" th:text="${bill.paymentStatus}"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <h5 class="section-title mt-4">
+                <i class="bi bi-person me-1"></i> Patient Information
+            </h5>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Patient ID</th>
+                    <td th:text="${bill.patientId}"></td>
+                </tr>
+            </table>
+
+            <h5 class="section-title mt-4">
+                <i class="bi bi-cash-coin me-1"></i> Payment Summary
+            </h5>
+
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Bill Type</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${bill.billType}"></td>
+                        <td>₹ <span th:text="${bill.amount}"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="table-info">
+                        <th>Total Amount</th>
+                        <th>₹ <span th:text="${bill.amount}"></span></th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <a th:href="@{/admin/billing}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+
+            <a th:if="${bill.paymentStatus == 'Pending' or bill.paymentStatus == 'pending'}"
+               th:href="@{/patient/billing/pay/{id}(id=${bill.id})}"
+               class="btn btn-success">
+                <i class="bi bi-credit-card"></i> Proceed Payment
+            </a>
+
+        </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

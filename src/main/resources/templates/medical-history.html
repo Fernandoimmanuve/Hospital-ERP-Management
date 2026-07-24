@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Medical History</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container-fluid mt-4">
+
+
+
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-primary text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h3>
+
+🏥 My Medical History
+
+</h3>
+
+
+
+<a th:href="@{/patient/dashboard}"
+class="btn btn-light">
+
+
+<i class="bi bi-speedometer2"></i>
+
+Dashboard
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+
+<table class="table table-bordered table-hover">
+
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+
+<th>ID</th>
+
+<th>Visit Date</th>
+
+<th>Doctor</th>
+
+<th>Diagnosis</th>
+
+<th>Treatment</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+
+
+
+<tbody>
+
+
+
+<tr th:each="record:${history}">
+
+
+
+
+
+<td th:text="${record.id}">
+
+</td>
+
+
+
+
+
+
+
+<td th:text="${record.visitDate}">
+
+</td>
+
+
+
+
+
+
+
+<td th:text="${record.doctorName}">
+
+</td>
+
+
+
+
+
+
+
+<td th:text="${record.diagnosis}">
+
+</td>
+
+
+
+
+
+
+
+<td th:text="${record.treatment}">
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+<span class="badge bg-success"
+th:if="${record.status=='Completed'}">
+
+
+Completed
+
+
+</span>
+
+
+
+
+<span class="badge bg-warning text-dark"
+th:if="${record.status=='Ongoing'}">
+
+
+Ongoing
+
+
+</span>
+
+
+
+</td>
+
+
+
+
+
+
+
+
+
+<td>
+
+
+<a th:href="@{/patient/history/view/{id}(id=${record.id})}"
+class="btn btn-primary btn-sm">
+
+
+<i class="bi bi-eye"></i>
+
+View
+
+
+</a>
+
+
+</td>
+
+
+
+
+
+
+</tr>
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+<a th:href="@{/patient/dashboard}"
+class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

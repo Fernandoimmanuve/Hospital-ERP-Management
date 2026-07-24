@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .prescription-card { border-radius: 15px; }
+        .section-title { background: #0d6efd; color: white; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow prescription-card">
+        <div class="card-header bg-success text-white">
+            <div class="d-flex justify-content-between">
+                <h3>
+                    <i class="bi bi-prescription2 me-1"></i> Prescription Details
+                </h3>
+                <button onclick="window.print()" class="btn btn-light">
+                    <i class="bi bi-printer"></i> Print
+                </button>
+            </div>
+
+        <div class="card-body">
+
+            <h5 class="section-title">
+                <i class="bi bi-person-badge me-1"></i> Doctor Information
+            </h5>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Doctor Name</th>
+                    <td th:text="${prescription.doctor.firstName + ' ' + prescription.doctor.lastName}"></td>
+                </tr>
+                <tr>
+                    <th>Specialization</th>
+                    <td th:text="${prescription.doctor.specialization}"></td>
+                </tr>
+            </table>
+
+            <h5 class="section-title mt-4">
+                <i class="bi bi-person me-1"></i> Patient Information
+            </h5>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Patient Name</th>
+                    <td th:text="${prescription.patient.firstName + ' ' + prescription.patient.lastName}"></td>
+                </tr>
+                <tr>
+                    <th>Patient ID</th>
+                    <td th:text="${prescription.patient.id}"></td>
+                </tr>
+            </table>
+
+            <h5 class="section-title mt-4">
+                <i class="bi bi-clipboard-pulse me-1"></i> Prescription Details
+            </h5>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Prescription Date</th>
+                    <td th:text="${prescription.prescriptionDate}"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td th:text="${prescription.status}"></td>
+                </tr>
+            </table>
+
+            <h5 class="section-title mt-4">
+                <i class="bi bi-capsule me-1"></i> Medicine Details
+            </h5>
+
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Medicine</th>
+                        <th>Dosage</th>
+                        <th>Instructions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${prescription.medicines}"></td>
+                        <td th:text="${prescription.dosage}"></td>
+                        <td th:text="${prescription.instructions}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a th:href="@{/patient/prescriptions}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+
+        </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

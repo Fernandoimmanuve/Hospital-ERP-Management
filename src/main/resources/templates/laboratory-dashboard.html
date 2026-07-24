@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Laboratory Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<h2 class="mb-4">
+
+🧪 Laboratory Dashboard
+
+</h2>
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6">
+
+
+<div class="card shadow text-center p-4">
+
+
+<h5>Total Tests</h5>
+
+
+<h1 th:text="${totalTests}">
+0
+</h1>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-6">
+
+
+<div class="card shadow text-center p-4">
+
+
+<h5>Active Tests</h5>
+
+
+<h1 th:text="${activeTests}">
+0
+</h1>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</body>
+
+
+</html>

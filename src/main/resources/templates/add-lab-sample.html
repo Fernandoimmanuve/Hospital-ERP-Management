@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Add Lab Sample</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<div class="card shadow">
+
+
+<div class="card-header bg-success text-white">
+
+<h3>
+🩸 Collect Laboratory Sample
+</h3>
+
+</div>
+
+
+
+<div class="card-body">
+
+
+<form th:action="@{/admin/lab-sample/save}"
+      th:object="${sample}"
+      method="post">
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<label>Patient ID</label>
+
+<input type="number"
+class="form-control"
+th:field="*{patientId}">
+
+</div>
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+<label>Patient Name</label>
+
+<input type="text"
+class="form-control"
+th:field="*{patientName}">
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<label>Test ID</label>
+
+<input type="number"
+class="form-control"
+th:field="*{testId}">
+
+</div>
+
+
+
+
+<div class="col-md-6 mb-3">
+
+<label>Test Name</label>
+
+<input type="text"
+class="form-control"
+th:field="*{testName}">
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mb-3">
+
+<label>Sample Type</label>
+
+
+<select class="form-select"
+th:field="*{sampleType}">
+
+
+<option value="Blood">
+Blood
+</option>
+
+
+<option value="Urine">
+Urine
+</option>
+
+
+<option value="Saliva">
+Saliva
+</option>
+
+
+<option value="Other">
+Other
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mb-3">
+
+<label>Technician Name</label>
+
+
+<input type="text"
+class="form-control"
+th:field="*{technicianName}">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mb-3">
+
+<label>Status</label>
+
+
+<select class="form-select"
+th:field="*{status}">
+
+
+<option value="Collected">
+Collected
+</option>
+
+
+<option value="Processing">
+Processing
+</option>
+
+
+<option value="Completed">
+Completed
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mb-3">
+
+<label>Remarks</label>
+
+
+<textarea class="form-control"
+th:field="*{remarks}">
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+<button class="btn btn-success">
+
+Save Sample
+
+</button>
+
+
+
+<a th:href="@{/admin/lab-sample}"
+class="btn btn-secondary">
+
+Back
+
+</a>
+
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Patient Medical History</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+
+            <h3>
+                <i class="bi bi-clock-history"></i>
+                Patient Medical History
+            </h3>
+
+            <a th:href="@{/doctor/dashboard}"
+               class="btn btn-light">
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="mb-3">
+
+                <form th:action="@{/medical-records/search}" method="get">
+
+                    <div class="input-group">
+
+                        <input type="text"
+                               class="form-control"
+                               name="diagnosis"
+                               placeholder="Search Diagnosis">
+
+                        <button class="btn btn-primary">
+
+                            <i class="bi bi-search"></i>
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Date</th>
+
+                        <th>Doctor</th>
+
+                        <th>Symptoms</th>
+
+                        <th>Diagnosis</th>
+
+                        <th>Treatment</th>
+
+                        <th>BP</th>
+
+                        <th>Sugar</th>
+
+                        <th>Weight</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="record : ${records}">
+
+                        <td th:text="${record.id}"></td>
+
+                        <td th:text="${#temporals.format(record.visitDate,'dd-MM-yyyy HH:mm')}"></td>
+
+                        <td th:text="${record.doctorName}"></td>
+
+                        <td th:text="${record.symptoms}"></td>
+
+                        <td th:text="${record.diagnosis}"></td>
+
+                        <td th:text="${record.treatment}"></td>
+
+                        <td th:text="${record.bloodPressure}"></td>
+
+                        <td th:text="${record.bloodSugar}"></td>
+
+                        <td th:text="${record.weight}"></td>
+
+                        <td>
+
+                            <span class="badge bg-success"
+                                  th:text="${record.status}"></span>
+
+                        </td>
+
+                        <td>
+
+                            <a th:href="@{/medical-records/view/{id}(id=${record.id})}"
+                               class="btn btn-info btn-sm">
+
+                                <i class="bi bi-eye"></i>
+
+                            </a>
+
+                            <a th:href="@{/medical-records/edit/{id}(id=${record.id})}"
+                               class="btn btn-warning btn-sm">
+
+                                <i class="bi bi-pencil"></i>
+
+                            </a>
+
+                            <a th:href="@{/medical-records/delete/{id}(id=${record.id})}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Delete this medical record?')">
+
+                                <i class="bi bi-trash"></i>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

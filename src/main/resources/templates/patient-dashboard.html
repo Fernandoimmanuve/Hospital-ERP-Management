@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{patient-layout-fragment :: head('Patient Dashboard - Dreams EMR', ~{})}">
+</head>
+
+<body th:replace="~{patient-layout-fragment :: body(~{:: .dashboard-content})}">
+
+<div class="dashboard-content">
+
+    <!-- ===================== WELCOME SECTION ===================== -->
+    <div class="welcome-section">
+        <h2 class="welcome-title animate-fade-in-up">
+            Welcome, <span th:text="${patientName}">Patient</span> 👤
+        </h2>
+        <p class="welcome-subtitle animate-fade-in-up">
+            Hospital ERP Patient Portal - Manage your health records and appointments.
+        </p>
+    </div>
+
+    <!-- ===================== STATISTICS CARDS ===================== -->
+    <div class="row g-3 mb-4">
+        <div class="col-xl-3 col-md-6 animate-fade-in-up">
+            <div class="stat-card" data-ripple>
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <div class="stat-icon blue"><i class="fas fa-calendar-check"></i></div>
+                        <div class="stat-label">Appointments</div>
+                        <div class="stat-value"><span class="counter" th:text="${appointments}">0</span></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-2">
+                    <span class="stat-growth up"><i class="fas fa-arrow-up"></i> Total</span>
+                    <span class="text-muted" style="font-size: 0.65rem;">all appointments</span>
+                </div>
+                <canvas id="sparkline1" class="stat-sparkline" width="200" height="30"></canvas>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 animate-fade-in-up">
+            <div class="stat-card" data-ripple>
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <div class="stat-icon orange"><i class="fas fa-prescription"></i></div>
+                        <div class="stat-label">Prescriptions</div>
+                        <div class="stat-value"><span class="counter" th:text="${prescriptions}">0</span></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-2">
+                    <span class="stat-growth up"><i class="fas fa-arrow-up"></i> Total</span>
+                    <span class="text-muted" style="font-size: 0.65rem;">prescriptions issued</span>
+                </div>
+                <canvas id="sparkline2" class="stat-sparkline" width="200" height="30"></canvas>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 animate-fade-in-up">
+            <div class="stat-card" data-ripple>
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <div class="stat-icon purple"><i class="fas fa-flask"></i></div>
+                        <div class="stat-label">Lab Reports</div>
+                        <div class="stat-value"><span class="counter" th:text="${labReports}">0</span></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-2">
+                    <span class="stat-growth down"><i class="fas fa-arrow-down"></i> Reports</span>
+                    <span class="text-muted" style="font-size: 0.65rem;">test results</span>
+                </div>
+                <canvas id="sparkline3" class="stat-sparkline" width="200" height="30"></canvas>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 animate-fade-in-up">
+            <div class="stat-card" data-ripple>
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <div class="stat-icon pink"><i class="fas fa-notes-medical"></i></div>
+                        <div class="stat-label">Medical History</div>
+                        <div class="stat-value"><span class="counter" th:text="${medicalHistory}">0</span></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-2">
+                    <span class="stat-growth up"><i class="fas fa-arrow-up"></i> Records</span>
+                    <span class="text-muted" style="font-size: 0.65rem;">history entries</span>
+                </div>
+                <canvas id="sparkline4" class="stat-sparkline" width="200" height="30"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== RECENT ACTIVITY + QUICK ACTIONS ===================== -->
+    <div class="row g-3 mb-4">
+        <div class="col-xl-8 animate-fade-in-up">
+            <div class="card-premium h-100">
+                <div class="card-header-custom">
+                    <h5>Recent Appointments</h5>
+                    <a href="/patient/appointments" class="btn btn-sm btn-outline-primary rounded-pill px-3" style="font-size:0.75rem;font-weight:600;">
+                        View All
+                    </a>
+                </div>
+                <div class="card-body-custom p-0">
+                    <div class="table-responsive">
+                        <table class="table table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar-sm blue">SW</span>
+                                            <span class="fw-semibold" style="font-size:0.82rem;">Dr. Sarah Wilson</span>
+                                        </div>
+                                    </td>
+                                    <td>2024-01-15</td>
+                                    <td><span class="font-mono">09:00 AM</span></td>
+                                    <td><span class="status-badge confirmed">Confirmed</span></td>
+                                    <td>
+                                        <a href="/patient/appointments" class="btn-action accept"><i class="fas fa-eye me-1"></i>View</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar-sm green">JC</span>
+                                            <span class="fw-semibold" style="font-size:0.82rem;">Dr. James Chen</span>
+                                        </div>
+                                    </td>
+                                    <td>2024-01-15</td>
+                                    <td><span class="font-mono">10:30 AM</span></td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td>
+                                        <a href="/patient/appointments" class="btn-action accept"><i class="fas fa-eye me-1"></i>View</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar-sm purple">PK</span>
+                                            <span class="fw-semibold" style="font-size:0.82rem;">Dr. Priya Kumar</span>
+                                        </div>
+                                    </td>
+                                    <td>2024-01-16</td>
+                                    <td><span class="font-mono">02:00 PM</span></td>
+                                    <td><span class="status-badge confirmed">Confirmed</span></td>
+                                    <td>
+                                        <a href="/patient/appointments" class="btn-action accept"><i class="fas fa-eye me-1"></i>View</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 animate-fade-in-up">
+            <div class="card-premium h-100">
+                <div class="card-header-custom">
+                    <h5>Quick Actions</h5>
+                </div>
+                <div class="card-body-custom">
+                    <div class="quick-actions-grid">
+                        <a href="/patient/appointments/book" class="quick-action-btn" data-ripple>
+                            <div class="qa-icon" style="background:rgba(37,99,235,0.10);color:#2563EB;">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                            <span>Book Appointment</span>
+                        </a>
+                        <a href="/patient/appointments" class="quick-action-btn" data-ripple>
+                            <div class="qa-icon" style="background:rgba(16,185,129,0.10);color:#10B981;">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <span>My Appointments</span>
+                        </a>
+                        <a href="/patient/billing" class="quick-action-btn" data-ripple>
+                            <div class="qa-icon" style="background:rgba(249,115,22,0.10);color:#F97316;">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <span>View Bills</span>
+                        </a>
+                        <a href="/patient/lab-reports" class="quick-action-btn" data-ripple>
+                            <div class="qa-icon" style="background:rgba(124,58,237,0.10);color:#7C3AED;">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <span>Lab Reports</span>
+                        </a>
+                        <a href="/patient/history" class="quick-action-btn" data-ripple>
+                            <div class="qa-icon" style="background:rgba(236,72,153,0.10);color:#EC4899;">
+                                <i class="fas fa-notes-medical"></i>
+                            </div>
+                            <span>Medical History</span>
+                        </a>
+                        <a href="/patient/feedback/add" class="quick-action-btn" data-ripple>
+                            <div class="qa-icon" style="background:rgba(245,158,11,0.10);color:#F59E0B;">
+                                <i class="fas fa-comment-medical"></i>
+                            </div>
+                            <span>Give Feedback</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== ACTIVITY TIMELINE ===================== -->
+    <div class="row g-3 mb-4">
+        <div class="col-xl-12 animate-fade-in-up">
+            <div class="card-premium">
+                <div class="card-header-custom">
+                    <h5>Recent Activity</h5>
+                </div>
+                <div class="card-body-custom p-0">
+                    <ul class="activity-timeline" style="padding:4px 16px;">
+                        <li class="activity-item">
+                            <div class="activity-icon blue"><i class="fas fa-calendar-plus"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-title">Appointment Booked</div>
+                                <div class="activity-desc">Appointment with Dr. Sarah Wilson on Jan 15, 2024</div>
+                                <div class="activity-time">2 days ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon green"><i class="fas fa-prescription"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-title">Prescription Issued</div>
+                                <div class="activity-desc">New prescription from Dr. James Chen</div>
+                                <div class="activity-time">1 week ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon orange"><i class="fas fa-flask"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-title">Lab Results Ready</div>
+                                <div class="activity-desc">Blood test results are available for review</div>
+                                <div class="activity-time">1 week ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon purple"><i class="fas fa-file-invoice"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-title">Bill Generated</div>
+                                <div class="activity-desc">Invoice #1042 generated - $250.00</div>
+                                <div class="activity-time">2 weeks ago</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+

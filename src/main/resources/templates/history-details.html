@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Medical History Details</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+<style>
+
+.section-header{
+
+    background:#0d6efd;
+    color:white;
+    padding:10px;
+    border-radius:5px;
+
+}
+
+
+.history-card{
+
+    border-radius:15px;
+
+}
+
+</style>
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container mt-5">
+
+
+
+
+
+<div class="card shadow history-card">
+
+
+
+<div class="card-header bg-primary text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h3>
+
+🏥 Medical History Details
+
+</h3>
+
+
+
+
+<button onclick="window.print()"
+class="btn btn-light">
+
+
+<i class="bi bi-printer"></i>
+
+Print
+
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+
+
+<h5 class="section-header">
+
+👤 Patient Information
+
+</h5>
+
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th>Patient Name</th>
+
+<td th:text="${history.patientName}"></td>
+
+</tr>
+
+
+
+<tr>
+
+<th>Patient ID</th>
+
+<td th:text="${history.patientId}"></td>
+
+</tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+<h5 class="section-header mt-4">
+
+👨‍⚕️ Doctor Information
+
+</h5>
+
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th>Doctor Name</th>
+
+<td th:text="${history.doctorName}"></td>
+
+</tr>
+
+
+
+<tr>
+
+<th>Specialization</th>
+
+<td th:text="${history.specialization}"></td>
+
+</tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+<h5 class="section-header mt-4">
+
+📅 Visit Information
+
+</h5>
+
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th>Visit Date</th>
+
+<td th:text="${history.visitDate}"></td>
+
+</tr>
+
+
+
+<tr>
+
+<th>Diagnosis</th>
+
+<td th:text="${history.diagnosis}"></td>
+
+</tr>
+
+
+
+<tr>
+
+<th>Treatment</th>
+
+<td th:text="${history.treatment}"></td>
+
+</tr>
+
+
+
+<tr>
+
+<th>Status</th>
+
+<td th:text="${history.status}"></td>
+
+</tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+<h5 class="section-header mt-4">
+
+💊 Prescription Summary
+
+</h5>
+
+
+
+<div class="alert alert-success">
+
+
+<p th:text="${history.prescriptionDetails}">
+
+Prescription Details
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<h5 class="section-header mt-4">
+
+🧪 Laboratory Information
+
+</h5>
+
+
+
+<div class="alert alert-info">
+
+
+<p th:text="${history.labDetails}">
+
+Lab Details
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<h5 class="section-header mt-4">
+
+📝 Doctor Notes
+
+</h5>
+
+
+
+<div class="alert alert-warning">
+
+
+<p th:text="${history.doctorNotes}">
+
+Doctor Notes
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<a th:href="@{/patient/history}"
+class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

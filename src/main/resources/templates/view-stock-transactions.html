@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+
+<title>Medicine Stock Transactions</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container-fluid mt-4">
+
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-primary text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h3>
+
+<i class="bi bi-box-seam"></i>
+
+Medicine Stock Transactions
+
+</h3>
+
+
+
+<a th:href="@{/admin/pharmacy/transactions/dashboard}"
+   class="btn btn-light">
+
+
+<i class="bi bi-bar-chart"></i>
+
+Dashboard
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+<!-- Search -->
+
+<form th:action="@{/admin/pharmacy/transactions/search}"
+      method="get"
+      class="row mb-3">
+
+
+<div class="col-md-10">
+
+
+<input type="text"
+       name="keyword"
+       class="form-control"
+       placeholder="Search medicine">
+
+
+</div>
+
+
+
+<div class="col-md-2">
+
+
+<button class="btn btn-primary w-100">
+
+<i class="bi bi-search"></i>
+
+Search
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+
+<!-- Filter Buttons -->
+
+
+<div class="mb-3">
+
+
+<a th:href="@{/admin/pharmacy/transactions}"
+   class="btn btn-secondary btn-sm">
+
+All
+
+</a>
+
+
+
+
+<a th:href="@{/admin/pharmacy/transactions/issue}"
+   class="btn btn-danger btn-sm">
+
+Issued Medicines
+
+</a>
+
+
+
+
+<a th:href="@{/admin/pharmacy/transactions/restock}"
+   class="btn btn-success btn-sm">
+
+Restocked Medicines
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<table class="table table-bordered table-hover">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+
+<th>ID</th>
+
+<th>Medicine</th>
+
+<th>Type</th>
+
+<th>Quantity</th>
+
+<th>Previous Stock</th>
+
+<th>Remaining Stock</th>
+
+<th>Prescription ID</th>
+
+<th>Pharmacist</th>
+
+<th>Date</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+<tbody>
+
+
+<tr th:each="transaction : ${transactions}">
+
+
+<td th:text="${transaction.id}"></td>
+
+
+<td th:text="${transaction.medicineName}"></td>
+
+
+
+
+
+<td>
+
+
+<span th:if="${transaction.transactionType=='ISSUE'}"
+      class="badge bg-danger">
+
+ISSUE
+
+</span>
+
+
+
+
+<span th:if="${transaction.transactionType=='RESTOCK'}"
+      class="badge bg-success">
+
+RESTOCK
+
+</span>
+
+
+</td>
+
+
+
+
+
+
+<td th:text="${transaction.quantity}"></td>
+
+
+<td th:text="${transaction.previousStock}"></td>
+
+
+<td th:text="${transaction.remainingStock}"></td>
+
+
+<td th:text="${transaction.prescriptionId}"></td>
+
+
+<td th:text="${transaction.pharmacistName}"></td>
+
+
+<td th:text="${transaction.transactionDate}"></td>
+
+
+
+</tr>
+
+
+
+
+
+<tr th:if="${#lists.isEmpty(transactions)}">
+
+
+<td colspan="9"
+    class="text-center text-muted">
+
+
+No Stock Transactions Found
+
+
+</td>
+
+
+</tr>
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+
+
+
+
+<a th:href="@{/admin/pharmacy}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back Pharmacy
+
+
+</a>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

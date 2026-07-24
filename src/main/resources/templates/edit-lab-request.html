@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Lab Request | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-warning text-dark">
+
+
+<h3>
+
+<i class="bi bi-pencil-square"></i>
+
+Edit Patient Lab Request
+
+</h3>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/lab-request/update}"
+      th:object="${labRequest}"
+      method="post">
+
+
+
+<!-- Hidden ID -->
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+
+
+
+<div class="row">
+
+
+
+<!-- Patient ID -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient ID
+
+</label>
+
+
+<input type="number"
+       class="form-control"
+       th:field="*{patientId}"
+       required>
+
+
+</div>
+
+
+
+
+
+<!-- Patient Name -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{patientName}"
+       required>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+<!-- Doctor ID -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Doctor ID
+
+</label>
+
+
+<input type="number"
+       class="form-control"
+       th:field="*{doctorId}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Doctor Name -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Doctor Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{doctorName}"
+       required>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Test Name -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Laboratory Test
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{testName}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+<!-- Request Date -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Request Date
+
+</label>
+
+
+<input type="date"
+       class="form-control"
+       th:field="*{requestDate}">
+
+
+</div>
+
+
+
+
+
+
+<!-- Priority -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Priority
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{priority}">
+
+
+<option value="NORMAL">
+
+NORMAL
+
+</option>
+
+
+<option value="URGENT">
+
+URGENT
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Status -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Request Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{status}">
+
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+
+<option value="Processing">
+
+Processing
+
+</option>
+
+
+<option value="Completed">
+
+Completed
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Remarks -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Remarks
+
+</label>
+
+
+<textarea class="form-control"
+          rows="4"
+          th:field="*{remarks}">
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mt-4">
+
+
+<button type="submit"
+        class="btn btn-warning">
+
+
+<i class="bi bi-check-circle"></i>
+
+Update Request
+
+
+</button>
+
+
+
+
+
+<a th:href="@{/admin/lab-request}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+</div>
+
+
+
+
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

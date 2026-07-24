@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3>
+                <i class="bi bi-calendar-plus me-1"></i> Book Doctor Appointment
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <!-- Error display -->
+            <div th:if="${doctorUnavailable}" class="alert alert-danger" th:text="${doctorUnavailable}"></div>
+
+            <form th:action="@{/patient/appointments/save}" th:object="${appointment}" method="post">
+
+                <!-- Hidden patient ID (will be set by controller) -->
+                <input type="hidden" th:field="*{patient}" />
+
+                <div class="mb-3">
+                    <label class="form-label">Select Doctor</label>
+                    <select class="form-select" th:field="*{doctor}" required>
+                        <option value="">-- Select Doctor --</option>
+                        <option th:each="doctor:${doctors}"
+                                th:value="${doctor.id}"
+                                th:text="${doctor.firstName + ' ' + doctor.lastName + ' - ' + doctor.specialization}">
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Department -->
+                <div class="mb-3" th:if="${departments != null}">
+                    <label class="form-label">Department</label>
+                    <select class="form-select" th:field="*{department}">
+                        <option value="">-- Select Department --</option>
+                        <option th:each="dept:${departments}"
+                                th:value="${dept.id}"
+                                th:text="${dept.departmentName}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Appointment Date</label>
+                        <input type="date" class="form-control" th:field="*{appointmentDate}" required />
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Appointment Time</label>
+                        <input type="time" class="form-control" th:field="*{appointmentTime}" required />
+                    </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Reason For Visit</label>
+                    <textarea class="form-control" rows="4" th:field="*{reason}"
+                              placeholder="Describe your health problem"></textarea>
+                </div>
+
+                <!-- Hidden Status -->
+                <input type="hidden" name="status" value="Pending" />
+
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-calendar-check"></i> Confirm Booking
+                </button>
+
+                <a th:href="@{/patient/dashboard}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Back
+                </a>
+
+            </form>
+        </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

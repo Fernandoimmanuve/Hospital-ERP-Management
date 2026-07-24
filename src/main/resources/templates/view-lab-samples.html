@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Lab Sample Collection</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container-fluid mt-4">
+
+
+<div class="card shadow">
+
+
+<div class="card-header bg-danger text-white">
+
+
+<div class="d-flex justify-content-between">
+
+
+<h3>
+🧪 Sample Collection Management
+</h3>
+
+
+
+<a th:href="@{/admin/lab-sample/add}"
+class="btn btn-light">
+
+<i class="bi bi-plus-circle"></i>
+
+Collect Sample
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/lab-sample/search}"
+method="get"
+class="row mb-3">
+
+
+<div class="col-md-10">
+
+<input type="text"
+name="keyword"
+class="form-control"
+placeholder="Search patient name">
+
+</div>
+
+
+
+<div class="col-md-2">
+
+<button class="btn btn-danger w-100">
+
+Search
+
+</button>
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+
+<table class="table table-bordered table-hover">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Sample Code</th>
+
+<th>Patient</th>
+
+<th>Test</th>
+
+<th>Sample Type</th>
+
+<th>Collection Date</th>
+
+<th>Technician</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+<tbody>
+
+
+<tr th:each="sample:${samples}">
+
+
+<td th:text="${sample.id}"></td>
+
+
+<td>
+
+<span class="badge bg-dark"
+th:text="${sample.sampleCode}">
+
+</span>
+
+</td>
+
+
+<td th:text="${sample.patientName}"></td>
+
+
+<td th:text="${sample.testName}"></td>
+
+
+<td th:text="${sample.sampleType}"></td>
+
+
+<td th:text="${sample.collectionDate}"></td>
+
+
+<td th:text="${sample.technicianName}"></td>
+
+
+
+
+
+<td>
+
+
+<span class="badge bg-primary"
+th:if="${sample.status=='Collected'}">
+
+Collected
+
+</span>
+
+
+<span class="badge bg-warning text-dark"
+th:if="${sample.status=='Processing'}">
+
+Processing
+
+</span>
+
+
+<span class="badge bg-success"
+th:if="${sample.status=='Completed'}">
+
+Completed
+
+</span>
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<a th:href="@{/admin/lab-sample/edit/{id}(id=${sample.id})}"
+class="btn btn-warning btn-sm">
+
+
+<i class="bi bi-pencil"></i>
+
+
+</a>
+
+
+
+
+
+<a th:href="@{/admin/lab-sample/delete/{id}(id=${sample.id})}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete sample?')">
+
+
+<i class="bi bi-trash"></i>
+
+
+</a>
+
+
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+
+
+
+<a th:href="@{/admin/lab-sample/dashboard}"
+class="btn btn-dark">
+
+
+<i class="bi bi-bar-chart"></i>
+
+Dashboard
+
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+
+</html>

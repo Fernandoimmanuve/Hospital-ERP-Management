@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<title>Lab Sample Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<h2>
+🧪 Sample Collection Dashboard
+</h2>
+
+
+
+<div class="row mt-4">
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow text-center p-4">
+
+<h5>Total Samples</h5>
+
+<h1 th:text="${totalSamples}">
+0
+</h1>
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow text-center p-4">
+
+<h5>Collected</h5>
+
+<h1 th:text="${collectedSamples}">
+0
+</h1>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow text-center p-4">
+
+<h5>Processing</h5>
+
+<h1 th:text="${processingSamples}">
+0
+</h1>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow text-center p-4">
+
+<h5>Completed</h5>
+
+<h1 th:text="${completedSamples}">
+0
+</h1>
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+
+</html>

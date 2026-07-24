@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+
+<title>Medicine Inventory | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container-fluid mt-4">
+
+
+
+<div class="card shadow">
+
+
+
+<!-- Header -->
+
+
+<div class="card-header bg-success text-white">
+
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+
+<h3>
+
+<i class="bi bi-capsule-pill"></i>
+
+Medicine Inventory
+
+</h3>
+
+
+
+
+<a th:href="@{/admin/pharmacy/add}"
+   class="btn btn-light">
+
+
+<i class="bi bi-plus-circle"></i>
+
+Add Medicine
+
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+<!-- Search Section -->
+
+
+<form th:action="@{/admin/pharmacy/search}"
+      method="get"
+      class="row mb-4">
+
+
+
+<div class="col-md-10">
+
+
+<input type="text"
+       name="keyword"
+       class="form-control"
+       placeholder="Search medicine name">
+
+
+</div>
+
+
+
+
+<div class="col-md-2">
+
+
+<button class="btn btn-success w-100">
+
+
+<i class="bi bi-search"></i>
+
+Search
+
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+
+<!-- Filter Buttons -->
+
+
+<div class="mb-3">
+
+
+
+<a th:href="@{/admin/pharmacy/available}"
+   class="btn btn-success btn-sm">
+
+
+Available
+
+
+</a>
+
+
+
+
+<a th:href="@{/admin/pharmacy/low-stock}"
+   class="btn btn-warning btn-sm">
+
+
+Low Stock
+
+
+</a>
+
+
+
+
+<a th:href="@{/admin/pharmacy/expired}"
+   class="btn btn-danger btn-sm">
+
+
+Expired
+
+
+</a>
+
+
+
+
+<a th:href="@{/admin/pharmacy}"
+   class="btn btn-secondary btn-sm">
+
+
+All Medicines
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Medicine Table -->
+
+
+<div class="table-responsive">
+
+
+<table class="table table-bordered table-hover align-middle">
+
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+
+<th>ID</th>
+
+<th>Medicine Name</th>
+
+<th>Category</th>
+
+<th>Manufacturer</th>
+
+<th>Batch</th>
+
+<th>Expiry Date</th>
+
+<th>Quantity</th>
+
+<th>Price</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+<tbody>
+
+
+
+<tr th:each="medicine:${medicines}">
+
+
+
+
+
+<td th:text="${medicine.id}">
+</td>
+
+
+
+
+
+<td th:text="${medicine.medicineName}">
+</td>
+
+
+
+
+
+<td th:text="${medicine.category}">
+</td>
+
+
+
+
+
+<td th:text="${medicine.manufacturer}">
+</td>
+
+
+
+
+
+<td th:text="${medicine.batchNumber}">
+</td>
+
+
+
+
+
+<td th:text="${medicine.expiryDate}">
+</td>
+
+
+
+
+
+<td>
+
+
+<span th:if="${medicine.quantity < 20}"
+      class="badge bg-warning text-dark">
+
+Low Stock
+
+</span>
+
+
+<span th:unless="${medicine.quantity < 20}"
+      class="badge bg-success">
+
+<span th:text="${medicine.quantity}">
+</span>
+
+</span>
+
+
+</td>
+
+
+
+
+
+
+
+
+<td th:text="${medicine.price}">
+</td>
+
+
+
+
+
+
+
+
+<td>
+
+
+
+<span th:if="${medicine.status=='Available'}"
+      class="badge bg-success">
+
+Available
+
+</span>
+
+
+
+
+<span th:if="${medicine.status=='Out Of Stock'}"
+      class="badge bg-warning text-dark">
+
+Out Of Stock
+
+</span>
+
+
+
+
+<span th:if="${medicine.status=='Expired'}"
+      class="badge bg-danger">
+
+Expired
+
+</span>
+
+
+
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+<a th:href="@{/admin/pharmacy/edit/{id}(id=${medicine.id})}"
+   class="btn btn-warning btn-sm">
+
+
+<i class="bi bi-pencil-square"></i>
+
+
+</a>
+
+
+
+
+
+<a th:href="@{/admin/pharmacy/delete/{id}(id=${medicine.id})}"
+   class="btn btn-danger btn-sm"
+   onclick="return confirm('Delete this medicine?');">
+
+
+<i class="bi bi-trash"></i>
+
+
+</a>
+
+
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+
+
+<tr th:if="${#lists.isEmpty(medicines)}">
+
+
+<td colspan="10"
+    class="text-center text-muted">
+
+
+No Medicines Found
+
+
+</td>
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+<a th:href="@{/admin/dashboard}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back Dashboard
+
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+
+<title>Edit Medicine | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container mt-5">
+
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-warning">
+
+
+<h3>
+
+<i class="bi bi-pencil-square"></i>
+
+Edit Medicine
+
+</h3>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/pharmacy/update}"
+      th:object="${medicine}"
+      method="post">
+
+
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+
+
+<div class="row">
+
+
+
+
+
+<!-- Medicine Name -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Medicine Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{medicineName}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Category -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Category
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{category}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Manufacturer -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Manufacturer
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{manufacturer}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Batch Number -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Batch Number
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{batchNumber}"
+       readonly>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Expiry Date -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Expiry Date
+
+</label>
+
+
+<input type="date"
+       class="form-control"
+       th:field="*{expiryDate}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Quantity -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Quantity
+
+</label>
+
+
+<input type="number"
+       class="form-control"
+       th:field="*{quantity}"
+       min="0"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Price -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Price
+
+</label>
+
+
+<input type="number"
+       step="0.01"
+       class="form-control"
+       th:field="*{price}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Supplier -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Supplier
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{supplier}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Status -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{status}">
+
+
+
+<option value="Available">
+
+Available
+
+</option>
+
+
+<option value="Out Of Stock">
+
+Out Of Stock
+
+</option>
+
+
+<option value="Expired">
+
+Expired
+
+</option>
+
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Description -->
+
+
+<div class="col-md-12 mb-3">
+
+
+<label class="form-label">
+
+Description
+
+</label>
+
+
+<textarea class="form-control"
+          rows="4"
+          th:field="*{description}">
+</textarea>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<button type="submit"
+        class="btn btn-success">
+
+
+<i class="bi bi-check-circle"></i>
+
+Update Medicine
+
+
+</button>
+
+
+
+
+
+<a th:href="@{/admin/pharmacy}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Cancel
+
+
+</a>
+
+
+
+
+
+</form>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+
+</html>

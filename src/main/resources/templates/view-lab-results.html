@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Laboratory Results</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container-fluid mt-4">
+
+
+<div class="card shadow">
+
+
+<div class="card-header bg-primary text-white">
+
+<div class="d-flex justify-content-between">
+
+<h3>
+📄 Laboratory Result Management
+</h3>
+
+
+<a th:href="@{/admin/lab-result/add}"
+class="btn btn-light">
+
+<i class="bi bi-plus-circle"></i>
+Add Result
+
+</a>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/lab-result/search}"
+method="get"
+class="row mb-3">
+
+
+<div class="col-md-10">
+
+<input type="text"
+name="keyword"
+class="form-control"
+placeholder="Search patient name">
+
+</div>
+
+
+<div class="col-md-2">
+
+<button class="btn btn-primary w-100">
+
+Search
+
+</button>
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+
+<table class="table table-bordered table-hover">
+
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Sample Code</th>
+
+<th>Patient</th>
+
+<th>Test</th>
+
+<th>Result</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Verification</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+<tr th:each="result:${results}">
+
+
+<td th:text="${result.id}"></td>
+
+
+<td th:text="${result.sampleCode}"></td>
+
+
+<td th:text="${result.patientName}"></td>
+
+
+<td th:text="${result.testName}"></td>
+
+
+<td th:text="${result.resultValue}"></td>
+
+
+<td th:text="${result.resultDate}"></td>
+
+
+
+
+
+<td>
+
+<span class="badge bg-success"
+th:text="${result.status}">
+
+</span>
+
+</td>
+
+
+
+
+
+<td>
+
+<span class="badge bg-warning text-dark"
+th:text="${result.verificationStatus}">
+
+</span>
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<a th:href="@{/admin/lab-result/edit/{id}(id=${result.id})}"
+class="btn btn-warning btn-sm">
+
+<i class="bi bi-pencil"></i>
+
+</a>
+
+
+
+
+
+<a th:href="@{/admin/lab-result/delete/{id}(id=${result.id})}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete result?')">
+
+<i class="bi bi-trash"></i>
+
+</a>
+
+
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+
+
+
+<a th:href="@{/admin/lab-result/dashboard}"
+class="btn btn-dark">
+
+📊 Dashboard
+
+</a>
+
+
+<a th:href="@{/admin/lab-result/verification}"
+class="btn btn-success">
+
+🩺 Verification Queue
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+
+</html>

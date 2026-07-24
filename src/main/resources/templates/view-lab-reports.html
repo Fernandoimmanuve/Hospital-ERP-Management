@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Doctor Lab Reports</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container-fluid mt-4">
+
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-danger text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h3>
+
+🧪 Patient Laboratory Reports
+
+</h3>
+
+
+
+
+<a th:href="@{/doctor/dashboard}"
+class="btn btn-light">
+
+
+<i class="bi bi-speedometer2"></i>
+
+Dashboard
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+<table class="table table-bordered table-hover">
+
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+
+<th>ID</th>
+
+<th>Patient</th>
+
+<th>Sample Code</th>
+
+<th>Test Name</th>
+
+<th>Result</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+
+
+<tbody>
+
+
+
+<tr th:each="report:${reports}">
+
+
+
+
+
+<td th:text="${report.id}">
+</td>
+
+
+
+
+
+<td th:text="${report.patientName}">
+</td>
+
+
+
+
+
+<td th:text="${report.sampleCode}">
+</td>
+
+
+
+
+
+<td th:text="${report.testName}">
+</td>
+
+
+
+
+
+<td th:text="${report.resultValue}">
+</td>
+
+
+
+
+
+<td th:text="${report.resultDate}">
+</td>
+
+
+
+
+
+
+
+
+
+<td>
+
+
+<span class="badge bg-warning"
+th:if="${report.verificationStatus=='Pending'}">
+
+
+Pending
+
+
+</span>
+
+
+
+
+
+<span class="badge bg-success"
+th:if="${report.verificationStatus=='Approved'}">
+
+
+Approved
+
+
+</span>
+
+
+
+
+
+<span class="badge bg-danger"
+th:if="${report.verificationStatus=='Rejected'}">
+
+
+Rejected
+
+
+</span>
+
+
+
+</td>
+
+
+
+
+
+
+
+
+<td>
+
+
+
+<a th:href="@{/doctor/lab-reports/view/{id}(id=${report.id})}"
+class="btn btn-primary btn-sm">
+
+
+<i class="bi bi-eye"></i>
+
+View
+
+
+</a>
+
+
+
+
+
+
+
+<a th:href="@{/doctor/lab-reports/approve/{id}(id=${report.id})}"
+class="btn btn-success btn-sm"
+onclick="return confirm('Approve this report?')">
+
+
+<i class="bi bi-check-circle"></i>
+
+Approve
+
+
+</a>
+
+
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Laboratory Result</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-warning text-dark">
+
+
+<h3>
+
+<i class="bi bi-pencil-square"></i>
+
+Edit Laboratory Result
+
+</h3>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/lab-result/update}"
+      th:object="${labResult}"
+      method="post">
+
+
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Sample Code
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{sampleCode}"
+       readonly>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{patientName}"
+       required>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{testName}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Result Date
+
+</label>
+
+
+<input type="date"
+       class="form-control"
+       th:field="*{resultDate}">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Result Value
+
+</label>
+
+
+<textarea class="form-control"
+          rows="4"
+          th:field="*{resultValue}">
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Normal Range
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{normalRange}">
+
+
+</div>
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Result Unit
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{resultUnit}">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Report File Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{reportFileName}">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Verification Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{verificationStatus}">
+
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+
+<option value="Approved">
+
+Approved
+
+</option>
+
+
+<option value="Rejected">
+
+Rejected
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Result Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{status}">
+
+
+<option value="Completed">
+
+Completed
+
+</option>
+
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Verified By Doctor
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{verifiedByDoctor}">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Remarks
+
+</label>
+
+
+<textarea class="form-control"
+          rows="3"
+          th:field="*{remarks}">
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<button type="submit"
+        class="btn btn-warning">
+
+
+<i class="bi bi-check-circle"></i>
+
+Update Result
+
+
+</button>
+
+
+
+
+
+<a th:href="@{/admin/lab-result}"
+class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

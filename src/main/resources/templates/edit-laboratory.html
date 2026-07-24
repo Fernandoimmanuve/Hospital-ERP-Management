@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+
+<title>Edit Laboratory Test | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-warning">
+
+
+<h3>
+
+<i class="bi bi-pencil-square"></i>
+
+Edit Laboratory Test
+
+</h3>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/laboratory/update}"
+      th:object="${laboratory}"
+      method="post">
+
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+<div class="row">
+
+
+
+
+
+<!-- Patient -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient
+
+</label>
+
+
+<select class="form-select"
+        th:field="*{patient}"
+        required>
+
+
+<option th:each="patient:${patients}"
+        th:value="${patient.id}"
+        th:text="${patient.patientName}">
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Doctor -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Doctor
+
+</label>
+
+
+<select class="form-select"
+        th:field="*{doctor}"
+        required>
+
+
+<option th:each="doctor:${doctors}"
+        th:value="${doctor.id}"
+        th:text="${doctor.doctorName}">
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Appointment -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Appointment
+
+</label>
+
+
+<select class="form-select"
+        th:field="*{appointment}"
+        required>
+
+
+<option th:each="appointment:${appointments}"
+        th:value="${appointment.id}"
+        th:text="'Appointment #' + ${appointment.id}">
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Test Name -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{testName}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Test Date -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test Date
+
+</label>
+
+
+<input type="date"
+       class="form-control"
+       th:field="*{testDate}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Status -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{status}"
+        required>
+
+
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+
+<option value="In Progress">
+
+In Progress
+
+</option>
+
+
+<option value="Completed">
+
+Completed
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Description -->
+
+
+<div class="col-md-12 mb-3">
+
+
+<label class="form-label">
+
+Test Description
+
+</label>
+
+
+
+<textarea class="form-control"
+          rows="3"
+          th:field="*{testDescription}">
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Result -->
+
+
+<div class="col-md-12 mb-3">
+
+
+<label class="form-label">
+
+Test Result
+
+</label>
+
+
+
+<textarea class="form-control"
+          rows="4"
+          th:field="*{result}">
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Remarks -->
+
+
+<div class="col-md-12 mb-3">
+
+
+<label class="form-label">
+
+Remarks
+
+</label>
+
+
+
+<textarea class="form-control"
+          rows="3"
+          th:field="*{remarks}">
+
+</textarea>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+<button type="submit"
+        class="btn btn-success">
+
+
+<i class="bi bi-check-circle"></i>
+
+Update Laboratory Test
+
+
+</button>
+
+
+
+
+
+<a th:href="@{/admin/laboratory}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Cancel
+
+
+</a>
+
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

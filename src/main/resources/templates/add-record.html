@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Add Medical Record</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>
+                <i class="bi bi-file-earmark-medical"></i>
+                Add Medical Record
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/medical-records/save}"
+                  th:object="${record}"
+                  method="post">
+
+                <!-- Hidden IDs -->
+                <input type="hidden" th:field="*{patientId}">
+                <input type="hidden" th:field="*{doctorId}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Patient Name</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{patientName}"
+                               readonly>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Doctor Name</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{doctorName}"
+                               readonly>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Symptoms</label>
+                    <textarea class="form-control"
+                              rows="3"
+                              th:field="*{symptoms}"
+                              placeholder="Enter patient's symptoms"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Diagnosis</label>
+                    <textarea class="form-control"
+                              rows="3"
+                              th:field="*{diagnosis}"
+                              placeholder="Enter diagnosis"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Treatment</label>
+                    <textarea class="form-control"
+                              rows="4"
+                              th:field="*{treatment}"
+                              placeholder="Treatment plan"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Medical Notes</label>
+                    <textarea class="form-control"
+                              rows="4"
+                              th:field="*{medicalNotes}"
+                              placeholder="Additional notes"></textarea>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Blood Pressure</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{bloodPressure}"
+                               placeholder="120/80">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Blood Sugar</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{bloodSugar}"
+                               placeholder="110 mg/dL">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Weight</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{weight}"
+                               placeholder="70 kg">
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Status</label>
+
+                    <select class="form-select"
+                            th:field="*{status}">
+
+                        <option value="COMPLETED">Completed</option>
+                        <option value="FOLLOW_UP">Follow Up</option>
+                        <option value="REFERRED">Referred</option>
+
+                    </select>
+                </div>
+
+                <button class="btn btn-success" type="submit">
+                    <i class="bi bi-save"></i>
+                    Save Medical Record
+                </button>
+
+                <a th:href="@{/doctor/dashboard}"
+                   class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

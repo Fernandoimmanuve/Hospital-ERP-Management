@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Laboratory Test | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container mt-5">
+
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-warning text-dark">
+
+
+<h3>
+
+<i class="bi bi-pencil-square"></i>
+
+Edit Laboratory Test
+
+</h3>
+
+
+</div>
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+<form th:action="@{/admin/laboratory-tests/update}"
+      th:object="${laboratoryTest}"
+      method="post">
+
+
+
+
+
+<!-- Hidden ID -->
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{testName}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Category
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{category}"
+       required>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Description
+
+</label>
+
+
+
+<textarea class="form-control"
+          rows="3"
+          th:field="*{description}">
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test Price (₹)
+
+</label>
+
+
+<input type="number"
+       class="form-control"
+       th:field="*{price}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Normal Range
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{normalRange}"
+       placeholder="Example: 4.5 - 5.5">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{status}">
+
+
+<option value="Active">
+
+Active
+
+</option>
+
+
+<option value="Inactive">
+
+Inactive
+
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mt-4">
+
+
+<button type="submit"
+        class="btn btn-warning">
+
+
+<i class="bi bi-check-circle"></i>
+
+Update Test
+
+
+</button>
+
+
+
+
+
+<a th:href="@{/admin/laboratory-tests}">
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+</div>
+
+
+
+
+
+</form>
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Lab Sample | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+<div class="container mt-5">
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-warning text-dark">
+
+
+<h3>
+
+<i class="bi bi-pencil-square"></i>
+
+Edit Laboratory Sample
+
+</h3>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<form th:action="@{/admin/lab-sample/update}"
+      th:object="${sample}"
+      method="post">
+
+
+
+<!-- Hidden ID -->
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+
+
+<!-- Hidden Sample Code -->
+
+<input type="hidden"
+       th:field="*{sampleCode}">
+
+
+
+
+
+
+
+<div class="row">
+
+
+<!-- Patient ID -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient ID
+
+</label>
+
+
+<input type="number"
+       class="form-control"
+       th:field="*{patientId}"
+       required>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Patient Name -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{patientName}"
+       required>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+<!-- Test ID -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test ID
+
+</label>
+
+
+<input type="number"
+       class="form-control"
+       th:field="*{testId}">
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Test Name -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Test Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{testName}"
+       required>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Sample Type -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Sample Type
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{sampleType}">
+
+
+<option value="Blood">
+
+Blood
+
+</option>
+
+
+<option value="Urine">
+
+Urine
+
+</option>
+
+
+<option value="Saliva">
+
+Saliva
+
+</option>
+
+
+<option value="Other">
+
+Other
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+<!-- Collection Date -->
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Collection Date
+
+</label>
+
+
+<input type="date"
+       class="form-control"
+       th:field="*{collectionDate}">
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Technician -->
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Technician Name
+
+</label>
+
+
+<input type="text"
+       class="form-control"
+       th:field="*{technicianName}"
+       required>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Status -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Sample Status
+
+</label>
+
+
+
+<select class="form-select"
+        th:field="*{status}">
+
+
+<option value="Collected">
+
+Collected
+
+</option>
+
+
+<option value="Processing">
+
+Processing
+
+</option>
+
+
+<option value="Completed">
+
+Completed
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Remarks -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Remarks
+
+</label>
+
+
+
+<textarea class="form-control"
+          rows="4"
+          th:field="*{remarks}">
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mt-4">
+
+
+<button type="submit"
+        class="btn btn-warning">
+
+
+<i class="bi bi-check-circle"></i>
+
+Update Sample
+
+
+</button>
+
+
+
+
+
+<a th:href="@{/admin/lab-sample}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+</div>
+
+
+
+
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+
+<title>Laboratory Management | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div class="container-fluid mt-4">
+
+
+<div class="card shadow">
+
+
+
+<!-- Header -->
+
+<div class="card-header bg-primary text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h3>
+
+<i class="bi bi-heart-pulse-fill"></i>
+
+Laboratory Management
+
+</h3>
+
+
+
+<a th:href="@{/admin/laboratory/add}"
+   class="btn btn-light">
+
+
+<i class="bi bi-plus-circle"></i>
+
+Add Test
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<!-- Search -->
+
+
+<form th:action="@{/admin/laboratory/search}"
+      method="get"
+      class="row mb-4">
+
+
+
+<div class="col-md-10">
+
+
+<input type="text"
+       name="keyword"
+       class="form-control"
+       placeholder="Search by Patient Name">
+
+
+</div>
+
+
+
+<div class="col-md-2">
+
+
+<button class="btn btn-primary w-100">
+
+
+<i class="bi bi-search"></i>
+
+Search
+
+
+</button>
+
+
+</div>
+
+
+
+</form>
+
+
+
+
+
+<!-- Status Filter -->
+
+
+<div class="mb-3">
+
+
+<a th:href="@{/admin/laboratory/status/Pending}"
+   class="btn btn-warning btn-sm">
+
+Pending
+
+</a>
+
+
+
+<a th:href="@{/admin/laboratory/status/In Progress}"
+   class="btn btn-info btn-sm">
+
+In Progress
+
+</a>
+
+
+
+<a th:href="@{/admin/laboratory/status/Completed}"
+   class="btn btn-success btn-sm">
+
+Completed
+
+</a>
+
+
+</div>
+
+
+
+
+
+<!-- Table -->
+
+
+<div class="table-responsive">
+
+
+<table class="table table-bordered table-hover align-middle">
+
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+
+<th>ID</th>
+
+<th>Patient</th>
+
+<th>Doctor</th>
+
+<th>Test Name</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Result</th>
+
+<th>Actions</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+<tr th:each="lab:${laboratories}">
+
+
+
+<td th:text="${lab.id}">
+</td>
+
+
+
+<td th:text="${lab.patient.patientName}">
+</td>
+
+
+
+<td th:text="${lab.doctor.doctorName}">
+</td>
+
+
+
+<td th:text="${lab.testName}">
+</td>
+
+
+
+
+<td th:text="${lab.testDate}">
+</td>
+
+
+
+
+<td>
+
+
+<span th:if="${lab.status=='Pending'}"
+      class="badge bg-warning text-dark">
+
+Pending
+
+</span>
+
+
+
+<span th:if="${lab.status=='In Progress'}"
+      class="badge bg-info">
+
+In Progress
+
+</span>
+
+
+
+<span th:if="${lab.status=='Completed'}"
+      class="badge bg-success">
+
+Completed
+
+</span>
+
+
+
+</td>
+
+
+
+
+
+<td th:text="${lab.result}">
+</td>
+
+
+
+
+<td>
+
+
+<a th:href="@{/admin/laboratory/edit/{id}(id=${lab.id})}"
+   class="btn btn-warning btn-sm">
+
+
+<i class="bi bi-pencil-square"></i>
+
+
+</a>
+
+
+
+
+
+<a th:href="@{/admin/laboratory/delete/{id}(id=${lab.id})}"
+   class="btn btn-danger btn-sm"
+   onclick="return confirm('Delete this laboratory record?');">
+
+
+<i class="bi bi-trash"></i>
+
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+
+
+<tr th:if="${#lists.isEmpty(laboratories)}">
+
+
+<td colspan="8"
+    class="text-center text-muted">
+
+
+No Laboratory Records Found
+
+
+</td>
+
+
+</tr>
+
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+<a th:href="@{/admin/dashboard}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back Dashboard
+
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

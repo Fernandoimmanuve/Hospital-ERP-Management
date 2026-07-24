@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prescription Verification | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container-fluid mt-4">
+
+
+
+<div class="card shadow">
+
+
+
+<!-- Header -->
+
+<div class="card-header bg-success text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h3>
+
+<i class="bi bi-capsule"></i>
+
+Prescription Verification Queue
+
+</h3>
+
+
+
+<a th:href="@{/admin/pharmacy/prescription/add}"
+   class="btn btn-light">
+
+
+<i class="bi bi-plus-circle"></i>
+
+Add Prescription
+
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+<!-- Search -->
+
+<form th:action="@{/admin/pharmacy/prescription/search}"
+      method="get"
+      class="row mb-3">
+
+
+
+<div class="col-md-10">
+
+<input type="text"
+       name="keyword"
+       class="form-control"
+       placeholder="Search patient name">
+
+
+</div>
+
+
+
+
+<div class="col-md-2">
+
+<button class="btn btn-success w-100">
+
+<i class="bi bi-search"></i>
+
+Search
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+
+<!-- Filter Buttons -->
+
+
+<div class="mb-3">
+
+
+<a th:href="@{/admin/pharmacy/prescription}"
+   class="btn btn-secondary btn-sm">
+
+All
+
+</a>
+
+
+
+<a th:href="@{/admin/pharmacy/prescription/pending}"
+   class="btn btn-warning btn-sm">
+
+Pending
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Table -->
+
+
+<div class="table-responsive">
+
+
+
+<table class="table table-bordered table-hover align-middle">
+
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Prescription ID</th>
+
+<th>Patient</th>
+
+<th>Doctor</th>
+
+<th>Medicine</th>
+
+<th>Quantity</th>
+
+<th>Pharmacist</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Actions</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+
+<tbody>
+
+
+
+<tr th:each="prescription : ${prescriptions}">
+
+
+
+<td th:text="${prescription.id}">
+</td>
+
+
+
+
+<td th:text="${prescription.prescriptionId}">
+</td>
+
+
+
+
+<td th:text="${prescription.patientName}">
+</td>
+
+
+
+
+<td th:text="${prescription.doctorName}">
+</td>
+
+
+
+
+<td th:text="${prescription.medicineName}">
+</td>
+
+
+
+
+<td th:text="${prescription.quantity}">
+</td>
+
+
+
+
+<td th:text="${prescription.pharmacistName}">
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+<span th:if="${prescription.verificationStatus=='Pending'}"
+      class="badge bg-warning text-dark">
+
+Pending
+
+</span>
+
+
+
+
+<span th:if="${prescription.verificationStatus=='Approved'}"
+      class="badge bg-success">
+
+Approved
+
+</span>
+
+
+
+<span th:if="${prescription.verificationStatus=='DISPENSED'}"
+      class="badge bg-primary">
+
+Dispensed
+
+</span>
+
+
+
+
+<span th:if="${prescription.verificationStatus=='Rejected'}"
+      class="badge bg-danger">
+
+Rejected
+
+</span>
+
+
+
+</td>
+
+
+
+
+
+
+
+<td th:text="${prescription.verifiedDate}">
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+
+<a th:if="${prescription.verificationStatus=='Pending'}"
+   th:href="@{/admin/pharmacy/prescription/approve/{id}(id=${prescription.id})}"
+   class="btn btn-success btn-sm"
+   onclick="return confirm('Approve prescription?');">
+
+
+<i class="bi bi-check-circle"></i>
+
+
+</a>
+
+
+
+
+
+
+
+<a th:if="${prescription.verificationStatus=='Pending'}"
+   th:href="@{/admin/pharmacy/prescription/reject/{id}(id=${prescription.id})}"
+   class="btn btn-danger btn-sm"
+   onclick="return confirm('Reject prescription?');">
+
+
+<i class="bi bi-x-circle"></i>
+
+
+</a>
+
+
+
+
+
+
+
+
+<a th:href="@{/admin/pharmacy/prescription/delete/{id}(id=${prescription.id})}"
+   class="btn btn-dark btn-sm"
+   onclick="return confirm('Delete prescription?');">
+
+
+<i class="bi bi-trash"></i>
+
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+
+
+
+
+<tr th:if="${#lists.isEmpty(prescriptions)}">
+
+
+<td colspan="10"
+    class="text-center text-muted">
+
+
+No Prescription Records Found
+
+
+</td>
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+
+<a th:href="@{/admin/pharmacy}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back Pharmacy
+
+
+</a>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+
+</html>

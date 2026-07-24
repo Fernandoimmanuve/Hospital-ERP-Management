@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+
+<title>Prescription Dashboard | Hospital ERP</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+
+<style>
+
+
+.dashboard-card{
+
+    border-radius:15px;
+    transition:0.3s;
+
+}
+
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+.icon-box{
+
+    font-size:40px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container-fluid mt-4">
+
+
+
+<!-- Header -->
+
+
+<div class="card shadow mb-4">
+
+
+<div class="card-header bg-primary text-white">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<h2>
+
+<i class="bi bi-prescription2"></i>
+
+Prescription Verification Dashboard
+
+</h2>
+
+
+
+
+<a th:href="@{/admin/pharmacy/prescription}"
+   class="btn btn-light">
+
+
+<i class="bi bi-list"></i>
+
+View Prescriptions
+
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Dashboard Cards -->
+
+
+<div class="row g-4">
+
+
+
+
+
+<!-- Total -->
+
+
+<div class="col-md-3">
+
+
+<div class="card shadow dashboard-card text-center">
+
+
+<div class="card-body">
+
+
+<div class="icon-box text-primary">
+
+<i class="bi bi-file-medical"></i>
+
+</div>
+
+
+
+<h5>
+
+Total Prescriptions
+
+</h5>
+
+
+
+<h2 th:text="${total}">
+
+0
+
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Pending -->
+
+
+<div class="col-md-3">
+
+
+<div class="card shadow dashboard-card text-center">
+
+
+<div class="card-body">
+
+
+<div class="icon-box text-warning">
+
+<i class="bi bi-hourglass-split"></i>
+
+</div>
+
+
+
+<h5>
+
+Pending
+
+</h5>
+
+
+
+<h2 th:text="${pending}">
+
+0
+
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Approved -->
+
+
+<div class="col-md-3">
+
+
+<div class="card shadow dashboard-card text-center">
+
+
+<div class="card-body">
+
+
+<div class="icon-box text-success">
+
+<i class="bi bi-check-circle"></i>
+
+</div>
+
+
+
+<h5>
+
+Approved
+
+</h5>
+
+
+
+<h2 th:text="${approved}">
+
+0
+
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Rejected -->
+
+
+<div class="col-md-3">
+
+
+<div class="card shadow dashboard-card text-center">
+
+
+<div class="card-body">
+
+
+<div class="icon-box text-danger">
+
+<i class="bi bi-x-circle"></i>
+
+</div>
+
+
+
+<h5>
+
+Rejected
+
+</h5>
+
+
+
+<h2 th:text="${rejected}">
+
+0
+
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Quick Actions -->
+
+
+<div class="card shadow mt-5">
+
+
+<div class="card-header bg-dark text-white">
+
+
+<h4>
+
+Quick Actions
+
+</h4>
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<a th:href="@{/admin/pharmacy/prescription/pending}"
+   class="btn btn-warning me-2">
+
+
+<i class="bi bi-hourglass"></i>
+
+Pending Verification
+
+
+</a>
+
+
+
+
+
+<a th:href="@{/admin/pharmacy/prescription/add}"
+   class="btn btn-success me-2">
+
+
+<i class="bi bi-plus-circle"></i>
+
+New Verification
+
+
+</a>
+
+
+
+
+
+<a th:href="@{/admin/pharmacy}"
+   class="btn btn-secondary">
+
+
+<i class="bi bi-capsule"></i>
+
+Medicine Inventory
+
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+
+</html>

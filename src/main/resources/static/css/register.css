@@ -1,0 +1,154 @@
+/* ============================================================
+   🏥 Hospital ERP - Register Page Specific Styles
+   Overrides and complements login.css for the registration page
+   ============================================================ */
+
+/* ============================================================
+   REGISTER PAGE BODY SCROLLING
+   ============================================================ */
+.register-page {
+    min-height: 100vh;
+    padding: 30px 20px;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* ============================================================
+   REGISTER CARD ENHANCEMENTS
+   ============================================================ */
+.register-card {
+    animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* ============================================================
+   FORM LABEL GLOW
+   ============================================================ */
+.form-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   INPUT FOCUS ENHANCEMENTS
+   ============================================================ */
+.form-control-register:focus {
+    border-color: #2563EB;
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* ============================================================
+   ROLE SELECTION CARDS - GRID
+   ============================================================ */
+.role-selection .row {
+    margin: 0 -4px;
+}
+
+.role-selection .row > div {
+    padding: 4px;
+}
+
+/* ============================================================
+   PHOTO UPLOAD CONTAINER
+   ============================================================ */
+.photo-upload {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ============================================================
+   PASSWORD STRENGTH COLORS
+   ============================================================ */
+.strength-level.weak {
+    width: 25%;
+    background: #EF4444;
+}
+
+.strength-level.medium {
+    width: 50%;
+    background: #F59E0B;
+}
+
+.strength-level.strong {
+    width: 75%;
+    background: #10B981;
+}
+
+.strength-level.very-strong {
+    width: 100%;
+    background: #059669;
+}
+
+.strength-text.weak {
+    color: #FCA5A5;
+}
+
+.strength-text.medium {
+    color: #FCD34D;
+}
+
+.strength-text.strong {
+    color: #6EE7B7;
+}
+
+.strength-text.very-strong {
+    color: #34D399;
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS FOR REGISTER
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 991.98px) {
+    .register-page {
+        padding: 20px 15px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .register-card {
+        max-width: 600px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+    .register-page {
+        padding: 15px 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .register-card {
+        border-radius: 16px;
+        max-height: 85vh;
+    }
+
+    .form-control-register {
+        padding: 12px 14px 12px 38px;
+        font-size: 0.85rem;
+    }
+
+    .input-group-register .input-icon {
+        left: 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 400px) {
+    .register-card {
+        padding: 20px 12px 16px;
+    }
+}
+

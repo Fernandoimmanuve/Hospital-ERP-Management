@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Medical Record Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+
+            <h3>
+
+                <i class="bi bi-file-earmark-medical"></i>
+
+                Medical Record
+
+            </h3>
+
+            <span class="badge bg-light text-dark"
+                  th:text="${record.status}"></span>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Patient Information -->
+
+            <h5 class="border-bottom pb-2">
+
+                Patient Information
+
+            </h5>
+
+            <div class="row mb-4">
+
+                <div class="col-md-6">
+
+                    <strong>Patient ID :</strong>
+
+                    <span th:text="${record.patientId}"></span>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <strong>Patient Name :</strong>
+
+                    <span th:text="${record.patientName}"></span>
+
+                </div>
+
+            </div>
+
+            <!-- Doctor Information -->
+
+            <h5 class="border-bottom pb-2">
+
+                Doctor Information
+
+            </h5>
+
+            <div class="row mb-4">
+
+                <div class="col-md-6">
+
+                    <strong>Doctor ID :</strong>
+
+                    <span th:text="${record.doctorId}"></span>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <strong>Doctor Name :</strong>
+
+                    <span th:text="${record.doctorName}"></span>
+
+                </div>
+
+            </div>
+
+            <!-- Visit Information -->
+
+            <h5 class="border-bottom pb-2">
+
+                Consultation Details
+
+            </h5>
+
+            <table class="table table-bordered">
+
+                <tr>
+
+                    <th width="25%">Visit Date</th>
+
+                    <td th:text="${#temporals.format(record.visitDate,'dd-MM-yyyy HH:mm')}"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Symptoms</th>
+
+                    <td th:text="${record.symptoms}"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Diagnosis</th>
+
+                    <td th:text="${record.diagnosis}"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Treatment</th>
+
+                    <td th:text="${record.treatment}"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Medical Notes</th>
+
+                    <td th:text="${record.medicalNotes}"></td>
+
+                </tr>
+
+            </table>
+
+            <!-- Vital Signs -->
+
+            <h5 class="border-bottom pb-2">
+
+                Vital Signs
+
+            </h5>
+
+            <table class="table table-striped">
+
+                <tr>
+
+                    <th>Blood Pressure</th>
+
+                    <td th:text="${record.bloodPressure}"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Blood Sugar</th>
+
+                    <td th:text="${record.bloodSugar}"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Weight</th>
+
+                    <td th:text="${record.weight}"></td>
+
+                </tr>
+
+            </table>
+
+            <!-- Buttons -->
+
+            <div class="mt-4">
+
+                <a th:href="@{/medical-records/edit/{id}(id=${record.id})}"
+                   class="btn btn-warning">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Edit
+
+                </a>
+
+                <a th:href="@{/medical-records/history/{patientId}(patientId=${record.patientId})}"
+                   class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+                <button onclick="window.print()"
+                        class="btn btn-success">
+
+                    <i class="bi bi-printer"></i>
+
+                    Print
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

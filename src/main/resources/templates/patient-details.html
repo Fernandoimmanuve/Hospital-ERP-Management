@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid mt-4">
+
+    <!-- Patient Header -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3>
+                <i class="bi bi-person-circle"></i>
+                Patient Profile
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-person-circle" style="font-size:100px"></i>
+                    <h4>
+                        <span th:text="${patient.firstName}"></span>
+                        <span th:text="${patient.lastName}"></span>
+                    </h4>
+                    <span class="badge bg-success" th:text="${patient.bloodGroup}">O+</span>
+                </div>
+
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Patient ID</th>
+                            <td th:text="${patient.id}"></td>
+                        </tr>
+                        <tr>
+                            <th>First Name</th>
+                            <td th:text="${patient.firstName}"></td>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <td th:text="${patient.lastName}"></td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td th:text="${patient.gender}"></td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td th:text="${patient.dateOfBirth}"></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td th:text="${patient.phoneNumber}"></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td th:text="${patient.email}"></td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td><span class="badge bg-success" th:text="${patient.status}"></span></td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
+
+    <!-- Medical History -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-danger text-white">
+            <h4>
+                <i class="bi bi-heart-pulse me-1"></i> Medical History
+            </h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Diagnosis</th>
+                        <th>Treatment</th>
+                        <th>Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="history:${medicalHistory}">
+                        <td th:text="${history.date}"></td>
+                        <td th:text="${history.diagnosis}"></td>
+                        <td th:text="${history.treatment}"></td>
+                        <td th:text="${history.doctorName}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(medicalHistory)}">
+                        <td colspan="4" class="text-center text-muted">No medical history available.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <!-- Prescription History -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-warning">
+            <h4>
+                <i class="bi bi-capsule me-1"></i> Previous Prescriptions
+            </h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Medicine</th>
+                        <th>Dosage</th>
+                        <th>Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="prescription:${prescriptions}">
+                        <td th:text="${prescription.prescriptionDate}"></td>
+                        <td th:text="${prescription.medicines}"></td>
+                        <td th:text="${prescription.dosage}"></td>
+                        <td th:text="${prescription.doctor.doctorName}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(prescriptions)}">
+                        <td colspan="4" class="text-center text-muted">No prescriptions available.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <!-- Laboratory Reports -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-success text-white">
+            <h4>
+                <i class="bi bi-flask me-1"></i> Laboratory Reports
+            </h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Test</th>
+                        <th>Result</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="report:${labReports}">
+                        <td th:text="${report.testName}"></td>
+                        <td th:text="${report.resultValue}"></td>
+                        <td th:text="${report.resultDate}"></td>
+                        <td>
+                            <span class="badge bg-success" th:text="${report.status}"></span>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(labReports)}">
+                        <td colspan="4" class="text-center text-muted">No lab reports available.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <div class="mb-4">
+        <a th:href="@{/doctor/patients}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back To Patients
+        </a>
+        <a th:href="@{/patients}" class="btn btn-info">
+            <i class="bi bi-list"></i> All Patients
+        </a>
+    </div>
+
+</body>
+</html>

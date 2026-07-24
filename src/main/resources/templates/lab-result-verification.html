@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Lab Result Verification</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+<div class="container-fluid mt-4">
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-success text-white">
+
+
+<div class="d-flex justify-content-between">
+
+
+<h3>
+
+🩺 Doctor Lab Result Verification
+
+</h3>
+
+
+
+<a th:href="@{/admin/lab-result}"
+class="btn btn-light">
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+<table class="table table-bordered table-hover">
+
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Sample Code</th>
+
+<th>Patient</th>
+
+<th>Test</th>
+
+<th>Result</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+<tbody>
+
+
+<tr th:each="result:${results}">
+
+
+<td th:text="${result.id}"></td>
+
+
+<td th:text="${result.sampleCode}"></td>
+
+
+<td th:text="${result.patientName}"></td>
+
+
+<td th:text="${result.testName}"></td>
+
+
+<td th:text="${result.resultValue}"></td>
+
+
+<td th:text="${result.resultDate}"></td>
+
+
+
+
+
+<td>
+
+
+<span class="badge bg-warning text-dark">
+
+Pending Verification
+
+</span>
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<a th:href="@{/admin/lab-result/approve/{id}(id=${result.id})}"
+class="btn btn-success btn-sm"
+onclick="return confirm('Approve this report?')">
+
+
+<i class="bi bi-check-circle"></i>
+
+Approve
+
+
+</a>
+
+
+
+
+
+
+
+
+<a th:href="@{/admin/lab-result/reject/{id}(id=${result.id})}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Reject this report?')">
+
+
+<i class="bi bi-x-circle"></i>
+
+Reject
+
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+
+</html>

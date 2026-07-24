@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Create Prescription</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container mt-5">
+
+
+
+
+
+<div class="card shadow">
+
+
+
+<div class="card-header bg-success text-white">
+
+
+<h3>
+
+💊 Create Prescription
+
+</h3>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card-body">
+
+
+
+
+
+<form th:action="@{/doctor/prescription/save}"
+th:object="${prescription}"
+method="post">
+
+
+
+
+
+<input type="hidden"
+th:field="*{patientId}">
+
+
+
+
+
+<input type="hidden"
+th:field="*{doctorId}">
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Doctor Name
+
+</label>
+
+
+<input type="text"
+class="form-control"
+th:field="*{doctorName}"
+placeholder="Doctor Name">
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Patient Name
+
+</label>
+
+
+<input type="text"
+class="form-control"
+th:field="*{patientName}"
+placeholder="Patient Name">
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Diagnosis
+
+</label>
+
+
+<textarea class="form-control"
+rows="3"
+th:field="*{diagnosis}"
+placeholder="Enter diagnosis details">
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Medicines 💊
+
+</label>
+
+
+<textarea class="form-control"
+rows="5"
+th:field="*{medicines}"
+placeholder="Example:
+
+1. Paracetamol 500mg - Twice daily
+
+2. Vitamin C - Once daily">
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Dosage Instructions
+
+</label>
+
+
+<textarea class="form-control"
+rows="3"
+th:field="*{dosageInstructions}"
+placeholder="Before food / After food">
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Treatment Duration
+
+</label>
+
+
+<input type="text"
+class="form-control"
+th:field="*{duration}"
+placeholder="Example: 5 Days">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<button type="submit"
+class="btn btn-success">
+
+
+<i class="bi bi-save"></i>
+
+Save Prescription
+
+
+</button>
+
+
+
+
+
+
+
+<a th:href="@{/doctor/appointments}"
+class="btn btn-secondary">
+
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+
+</a>
+
+
+
+
+
+
+
+</form>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+
+
+</html>
